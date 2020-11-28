@@ -2,7 +2,7 @@
 
 # MesaServicio
 
-Mesa de Servicio Para el TECNM Campus Morelia
+ 
 
 
 ### Instalación 🔧
