@@ -62,10 +62,9 @@
                 <div class="mt-4">
                     <x-jet-label for="id_tipo_usuario" value="{{ __('Tipo Usuario') }}" />
                     <select name="id_tipo_usuario" class="block mt-1 w-full" required>
-                        <option>Seleccione uno...</option>
-                        <option value="1">Alumno</option>
-                        <option value="2">Docente</option>
-                        <option value="3">Aspirante</option>
+                       @foreach ($usuario as $user)
+                        <option value="{{$user->id}}">{{$user->tipo_usuario}}</option>
+                       @endforeach
                     </select>
 
                 <div class="flex items-center mt-4">

@@ -12,13 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>        <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+        @livewireStyles
     </head>
-    <body class=" antialiased" style="font-family: 'Open Sans', sans-serif;">
-        <div class="md:bg-green-400 sm:bg-yellow-400 lg:bg-blue-400 xl:bg-red-400">
-            {{ $slot }}
-        </div>
+    <body class="bg-gray-200 pt-4" style="font-family: 'Open Sans', sans-serif;">
+        {{ $slot }}
+
     </body>
 </html>
+ 

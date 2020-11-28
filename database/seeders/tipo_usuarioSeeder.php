@@ -17,12 +17,7 @@ class tipo_usuarioSeeder extends Seeder
         tipo_usuario::create([
             'tipo_usuario' => 'Alumno'
         ]);
-        tipo_usuario::create([
-            'tipo_usuario' => 'Docente'
-        ]);
-        tipo_usuario::create([
-            'tipo_usuario' => 'Aspirante'
-        ]);
+       
         tipo_usuario::create([
             'tipo_usuario' => 'Administrador'
         ]);

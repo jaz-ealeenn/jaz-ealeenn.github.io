@@ -3,43 +3,35 @@
 namespace App\Http\Controllers; 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Auth;
-use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Environment\Console;
+
 class LoginController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest', ['only' => 'invitado']);
-    }
+    
     
     public function index(){
-        $credentials = $this->validate(request(), [
-            'email' => 'email|string',
-            'password' => 'required|string'
-        ]);
-        if(Auth::attempt($credentials)){
-        $correo = $credentials['email'];
-        $datos = DB::table('users')->where('email', $correo)->get();
-
-        $acceso = DB::table('users')->where('email', $correo)->pluck('id_tipo_usuario')->first();
-        }
+        $user = Auth::user();
+     
+        $acceso = $user->id_tipo_usuario;
         switch($acceso){
-            case '4':
-                return view('Administrador.Administrador', compact('datos'));
-            break;
+            
             case '1':
-                return view('dashboard', compact('datos'));
+                return view('dashboard');
             break;
             case '3':
-                return view('dashboard', compact('datos'));
+                return view('dashboard');
             break;
             case '2':
-                return view('dashboard', compact('datos'));
+                return view('dashboard');
+            break;
+            case '4':
+                return redirect()->route('admin');
             break;
         }
-        return "El id es: ". $datos ."+";
+        
     }
-    public function invitado(){
-        return "Invitado";
-    }
+     
+     
 }

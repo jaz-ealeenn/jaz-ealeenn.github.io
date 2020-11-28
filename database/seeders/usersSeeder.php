@@ -19,7 +19,7 @@ class usersSeeder extends Seeder
             'ap_paterno' => 'Mendez',
             'ap_materno' => 'garcia',
             'name' => 'Juan',
-            'id_tipo_usuario' => Tipo_usuario::where('tipo_usuario', 'Aspirante')->value('id'),
+            'id_tipo_usuario' => Tipo_usuario::where('tipo_usuario', 'Alumno')->value('id'),
             'email' => 'qwert@gmail.com',
             'password' => bcrypt('1q2w3e4r5t'),
         ]);
@@ -27,7 +27,7 @@ class usersSeeder extends Seeder
             'ap_paterno' => 'Aviles',
             'ap_materno' => 'Mendoza',
             'name' => 'Pedro',
-            'id_tipo_usuario' => Tipo_usuario::where('tipo_usuario', 'Docente')->value('id'),
+            'id_tipo_usuario' => Tipo_usuario::where('tipo_usuario', 'Alumno')->value('id'),
             'email' => 'trewq@gmail.com',
             'password' => bcrypt('!Q2w3e4r5t'),
         ]);

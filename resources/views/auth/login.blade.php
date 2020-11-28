@@ -52,6 +52,4 @@
     </x-authentication-card>
 </x-guest-layout>
 @endguest
-@auth
-<h1>Invitado</h1>
-@endauth
+ 

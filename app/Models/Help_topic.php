@@ -9,4 +9,9 @@ class Help_topic extends Model
 {
     use HasFactory;
     protected $table = 'help_topic';
+
+
+    public function ticket(){
+        return $this->hasMany('App\Models\Ticket');
+    }
 }

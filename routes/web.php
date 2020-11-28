@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\TicketComponent;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,12 +18,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('admin/ticket', [TicketController::class, 'index'])->name('ticket.admin.index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/') ;
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('ticket' ,[TicketController::class, 'index'])->name('ticket.index');
+
+Route::post('ticket' ,[TicketController::class, 'store'])->name('ticket.store');
+Route::get('ticket/create',[TicketController::class, 'create'])->name('ticket.create');
+Route::get('ticket/{id}', [TicketController::class,'show'])->name('ticket.show');
+ 
+Route::get('inicio', [LoginController::class, 'index'])->name('inicio')->middleware('auth');
+
+ Route::get('/', [LoginController::class, 'index'])->middleware('auth') ;
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/Acerca_de', function () {
     return view('Acerca_de');
 })->name('Acerca_de');
@@ -31,7 +44,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/Preguntas_Frecuentes', fu
     return view('Preguntas_Frecuentes');
 })->name('Preguntas_Frecuentes');
 
-Route::post('login', 'LoginController@index')->name('login');
-Route::get('admin/dashboard', function(){
-    return view('Administrador.Administrador');
+ 
+Route::get('admin/dashboard', function () {
+    $user = Auth::user();
+    $acceso = $user->id_tipo_usuario;
+    switch($acceso){
+        
+        case '1':
+            return redirect()->route('inicio');
+        break;
+        case '3':
+            return redirect()->route('inicio');
+        break;
+        case '2':
+            return redirect()->route('inicio');
+        break;
+       
+    }    
+        
+    return view('Administrador.Administrador', compact('user'));
 })->name('admin');
