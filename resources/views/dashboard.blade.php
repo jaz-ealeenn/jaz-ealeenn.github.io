@@ -6,6 +6,7 @@
             <div class="bg-white overflow-hidden shadow-xl p-8 sm:rounded-lg">
                 <div class="container">
                     <a href="{{route('ticket.create')}}">crear ticket</a>
+                    <a href="{{route('ticket.index')}}">Revisar el estatus de tu ticket</a>
                     
                 </div>
                 

@@ -13,8 +13,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasApiTokens;
     use HasFactory;
@@ -68,6 +69,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
     public function tickets(){
-       return $this>hasMany(Ticket::class);
+       return $this>hasMany('App\Ticket');
     }
 }

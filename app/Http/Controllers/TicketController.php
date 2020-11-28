@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\ticket;
 use Illuminate\Http\Request;
 use App\Models\Help_topic;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 class TicketController extends Controller
 {
     /**
@@ -18,13 +20,13 @@ class TicketController extends Controller
     public function index()
     {
         $user = Auth::user();
-     
+        $id= $user->id;
+        $ticket= Ticket::latest()->where('id_usuario', $id)->get();
         $acceso = $user->id_tipo_usuario;
         if ($acceso=="4") {
             return view('ticket.admin.index');
          
-        }else return view('ticket.index');
-        
+        }else return view('ticket.index', compact('ticket', 'user'));
         
         /*
         $help_topic = Help_Topic::all();
@@ -41,7 +43,7 @@ class TicketController extends Controller
     {
         $help_topic = Help_Topic::all();
         $user = Auth::user();
-     
+        
         $acceso = $user->id_tipo_usuario;
         if ($acceso=="4") {
             return view('Administrador.Administrador', compact('user'));
